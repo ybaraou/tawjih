@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
-import { useLanguage } from '@/hooks/use-language';
-import { Language } from '@/types';
-import { supportedLanguages } from '@/i18n';
+import { useEffect } from "react";
+import { useLanguage } from "@/hooks/use-language";
+import { Language } from "@/types";
+import { supportedLanguages } from "@/i18n";
 
 export default function LanguageToggle() {
   const { language, setLanguage } = useLanguage();
@@ -9,13 +9,13 @@ export default function LanguageToggle() {
   useEffect(() => {
     // Set HTML lang attribute and direction
     const htmlEl = document.documentElement;
-    htmlEl.setAttribute('lang', language);
-    
+    htmlEl.setAttribute("lang", language);
+
     // Set RTL for Arabic
-    if (language === 'ar') {
-      htmlEl.classList.add('rtl');
+    if (language === "ar") {
+      htmlEl.classList.add("rtl");
     } else {
-      htmlEl.classList.remove('rtl');
+      htmlEl.classList.remove("rtl");
     }
   }, [language]);
 
@@ -32,12 +32,12 @@ export default function LanguageToggle() {
             key={code}
             className={`language-toggle rounded-md px-3 py-1 font-medium text-sm ${
               isActive
-                ? 'bg-primary-100 text-primary-700'
-                : 'hover:bg-gray-100 text-gray-500'
-            } ${code === 'ar' ? 'font-amiri' : ''}`}
+                ? "bg-blue-100 text-blue-700"
+                : "hover:bg-gray-100 text-gray-500"
+            } ${code === "ar" ? "font-amiri" : ""}`}
             onClick={() => handleLanguageChange(code as Language)}
           >
-            {code === 'ar' ? 'ع' : code.toUpperCase()}
+            {code === "ar" ? "ع" : code.toUpperCase()}
           </button>
         );
       })}

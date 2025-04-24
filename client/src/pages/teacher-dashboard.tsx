@@ -1,16 +1,16 @@
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useQuery } from '@tanstack/react-query';
-import { Card, CardContent } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { Progress } from '@/components/ui/progress';
-import { 
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useQuery } from "@tanstack/react-query";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
+import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue, 
+  SelectValue,
 } from "@/components/ui/select";
 import {
   Table,
@@ -20,10 +20,14 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Skeleton } from '@/components/ui/skeleton';
-import { Search } from 'lucide-react';
-import { formatRelativeTime, getColorFromString, getInitials } from '@/lib/utils';
-import { StudentSummary, CareerInterestSummary } from '@/types';
+import { Skeleton } from "@/components/ui/skeleton";
+import { Search } from "lucide-react";
+import {
+  formatRelativeTime,
+  getColorFromString,
+  getInitials,
+} from "@/lib/utils";
+import { StudentSummary, CareerInterestSummary } from "@/types";
 
 export default function TeacherDashboard() {
   const { t } = useTranslation();
@@ -34,7 +38,7 @@ export default function TeacherDashboard() {
 
   // Fetch teacher data
   const { data: teacherData, isLoading } = useQuery({
-    queryKey: ['/api/teacher/dashboard', selectedClass],
+    queryKey: ["/api/teacher/dashboard", selectedClass],
   });
 
   // Mock data structure
@@ -44,14 +48,14 @@ export default function TeacherDashboard() {
       completedProfiles: 22,
       completionRate: 78,
       careerInterests: 14,
-      needGuidance: 6
+      needGuidance: 6,
     },
     topCareerInterests: [
       { name: "Computer Science", count: 8, percentage: 29 },
       { name: "Medicine", count: 6, percentage: 21 },
       { name: "Business Administration", count: 5, percentage: 18 },
       { name: "Engineering", count: 4, percentage: 14 },
-      { name: "Education", count: 3, percentage: 11 }
+      { name: "Education", count: 3, percentage: 11 },
     ],
     students: [
       {
@@ -63,7 +67,7 @@ export default function TeacherDashboard() {
         totalAssessments: 3,
         careerInterests: ["Software Engineering"],
         secondaryInterests: ["Data Science", "AI"],
-        lastActivity: new Date(Date.now() - 2 * 60 * 60 * 1000) // 2 hours ago
+        lastActivity: new Date(Date.now() - 2 * 60 * 60 * 1000), // 2 hours ago
       },
       {
         id: 2,
@@ -74,7 +78,7 @@ export default function TeacherDashboard() {
         totalAssessments: 3,
         careerInterests: ["Medicine"],
         secondaryInterests: ["Undecided"],
-        lastActivity: new Date(Date.now() - 24 * 60 * 60 * 1000) // 1 day ago
+        lastActivity: new Date(Date.now() - 24 * 60 * 60 * 1000), // 1 day ago
       },
       {
         id: 3,
@@ -85,18 +89,19 @@ export default function TeacherDashboard() {
         totalAssessments: 3,
         careerInterests: ["Business Administration"],
         secondaryInterests: ["Marketing", "Finance"],
-        lastActivity: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000) // 3 days ago
-      }
-    ]
+        lastActivity: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000), // 3 days ago
+      },
+    ],
   };
 
   // Filter students based on search query
-  const filteredStudents = dashboardData.students.filter(student => 
-    student.fullName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    student.studentId.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    student.careerInterests.some(interest => 
-      interest.toLowerCase().includes(searchQuery.toLowerCase())
-    )
+  const filteredStudents = dashboardData.students.filter(
+    (student) =>
+      student.fullName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      student.studentId.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      student.careerInterests.some((interest) =>
+        interest.toLowerCase().includes(searchQuery.toLowerCase())
+      )
   );
 
   // Pagination
@@ -121,19 +126,20 @@ export default function TeacherDashboard() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
       <div className="mb-6">
-        <h2 className="font-poppins font-bold text-2xl text-gray-800 mb-2">{t('teacher_dashboard')}</h2>
-        <p className="text-gray-600">{t('track_support')}</p>
+        <h2 className="font-poppins font-bold text-2xl text-gray-800 mb-2">
+          {t("teacher_dashboard")}
+        </h2>
+        <p className="text-gray-600">{t("track_support")}</p>
       </div>
 
       <Card className="mb-6">
         <CardContent className="p-5">
           <div className="flex justify-between items-center mb-4">
-            <h3 className="font-poppins font-semibold text-lg">{t('class_overview')}</h3>
+            <h3 className="font-poppins font-semibold text-lg">
+              {t("class_overview")}
+            </h3>
             <div className="flex space-x-2">
-              <Select
-                value={selectedClass}
-                onValueChange={setSelectedClass}
-              >
+              <Select value={selectedClass} onValueChange={setSelectedClass}>
                 <SelectTrigger className="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg w-32">
                   <SelectValue placeholder="Select class" />
                 </SelectTrigger>
@@ -143,75 +149,85 @@ export default function TeacherDashboard() {
                   <SelectItem value="class-4c">Class 4-C</SelectItem>
                 </SelectContent>
               </Select>
-              <Button 
-                className="bg-primary-500 hover:bg-primary-600 text-white"
-              >
-                {t('export_report')}
+              <Button className="bg-blue-500 hover:bg-blue-600 text-white">
+                {t("export_report")}
               </Button>
             </div>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-            <StatCard 
-              color="bg-blue-50" 
-              textColor="text-primary-500" 
-              title={t('total_students')} 
-              value={dashboardData.classStats.totalStudents} 
-              subtitle={t('in_current_class')} 
+            <StatCard
+              color="bg-blue-50"
+              textColor="text-blue-500"
+              title={t("total_students")}
+              value={dashboardData.classStats.totalStudents}
+              subtitle={t("in_current_class")}
             />
-            <StatCard 
-              color="bg-green-50" 
-              textColor="text-secondary-500" 
-              title={t('completed_profiles')} 
-              value={dashboardData.classStats.completedProfiles} 
-              subtitle={`${dashboardData.classStats.completionRate}% ${t('completion_rate')}`} 
+            <StatCard
+              color="bg-green-50"
+              textColor="text-secondary-500"
+              title={t("completed_profiles")}
+              value={dashboardData.classStats.completedProfiles}
+              subtitle={`${dashboardData.classStats.completionRate}% ${t(
+                "completion_rate"
+              )}`}
             />
-            <StatCard 
-              color="bg-yellow-50" 
-              textColor="text-accent-500" 
-              title={t('career_interests')} 
-              value={dashboardData.classStats.careerInterests} 
-              subtitle={t('unique_career_paths')} 
+            <StatCard
+              color="bg-yellow-50"
+              textColor="text-accent-500"
+              title={t("career_interests")}
+              value={dashboardData.classStats.careerInterests}
+              subtitle={t("unique_career_paths")}
             />
-            <StatCard 
-              color="bg-purple-50" 
-              textColor="text-purple-500" 
-              title={t('need_guidance')} 
-              value={dashboardData.classStats.needGuidance} 
-              subtitle={t('students_require_attention')} 
+            <StatCard
+              color="bg-purple-50"
+              textColor="text-purple-500"
+              title={t("need_guidance")}
+              value={dashboardData.classStats.needGuidance}
+              subtitle={t("students_require_attention")}
             />
           </div>
-          
-          <h4 className="font-poppins font-medium text-md mb-3">{t('top_career_interests')}</h4>
+
+          <h4 className="font-poppins font-medium text-md mb-3">
+            {t("top_career_interests")}
+          </h4>
           <div className="w-full bg-gray-100 rounded-lg p-4">
             <div className="space-y-3">
-              {dashboardData.topCareerInterests.map((interest: CareerInterestSummary, index: number) => (
-                <div key={index}>
-                  <div className="flex justify-between mb-1">
-                    <span className="text-sm font-medium">{interest.name}</span>
-                    <span className="text-sm text-gray-500">{interest.count} {t('students')}</span>
+              {dashboardData.topCareerInterests.map(
+                (interest: CareerInterestSummary, index: number) => (
+                  <div key={index}>
+                    <div className="flex justify-between mb-1">
+                      <span className="text-sm font-medium">
+                        {interest.name}
+                      </span>
+                      <span className="text-sm text-gray-500">
+                        {interest.count} {t("students")}
+                      </span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div
+                        className="bg-blue-500 h-2 rounded-full"
+                        style={{ width: `${interest.percentage}%` }}
+                      ></div>
+                    </div>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div 
-                      className="bg-primary-500 h-2 rounded-full" 
-                      style={{ width: `${interest.percentage}%` }}
-                    ></div>
-                  </div>
-                </div>
-              ))}
+                )
+              )}
             </div>
           </div>
         </CardContent>
       </Card>
-      
+
       <Card>
         <CardContent className="p-5">
           <div className="flex justify-between items-center mb-4">
-            <h3 className="font-poppins font-semibold text-lg">{t('student_progress')}</h3>
+            <h3 className="font-poppins font-semibold text-lg">
+              {t("student_progress")}
+            </h3>
             <div className="relative">
               <Input
                 type="text"
-                placeholder={t('search_students')}
+                placeholder={t("search_students")}
                 className="pl-9"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -219,16 +235,26 @@ export default function TeacherDashboard() {
               <Search className="h-4 w-4 text-gray-400 absolute left-3 top-3" />
             </div>
           </div>
-          
+
           <div className="overflow-x-auto">
             <Table>
               <TableHeader className="bg-gray-50">
                 <TableRow>
-                  <TableHead className="text-xs font-medium text-gray-500 uppercase">{t('student')}</TableHead>
-                  <TableHead className="text-xs font-medium text-gray-500 uppercase">{t('progress')}</TableHead>
-                  <TableHead className="text-xs font-medium text-gray-500 uppercase">{t('career_interests')}</TableHead>
-                  <TableHead className="text-xs font-medium text-gray-500 uppercase">{t('last_activity')}</TableHead>
-                  <TableHead className="text-xs font-medium text-gray-500 uppercase">{t('action')}</TableHead>
+                  <TableHead className="text-xs font-medium text-gray-500 uppercase">
+                    {t("student")}
+                  </TableHead>
+                  <TableHead className="text-xs font-medium text-gray-500 uppercase">
+                    {t("progress")}
+                  </TableHead>
+                  <TableHead className="text-xs font-medium text-gray-500 uppercase">
+                    {t("career_interests")}
+                  </TableHead>
+                  <TableHead className="text-xs font-medium text-gray-500 uppercase">
+                    {t("last_activity")}
+                  </TableHead>
+                  <TableHead className="text-xs font-medium text-gray-500 uppercase">
+                    {t("action")}
+                  </TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -238,43 +264,66 @@ export default function TeacherDashboard() {
                     <TableRow key={student.id}>
                       <TableCell>
                         <div className="flex items-center">
-                          <div className={`flex-shrink-0 h-8 w-8 rounded-full ${avatarColor} flex items-center justify-center`}>
-                            <span className="font-medium text-sm">{getInitials(student.fullName)}</span>
+                          <div
+                            className={`flex-shrink-0 h-8 w-8 rounded-full ${avatarColor} flex items-center justify-center`}
+                          >
+                            <span className="font-medium text-sm">
+                              {getInitials(student.fullName)}
+                            </span>
                           </div>
                           <div className="ml-4">
-                            <div className="text-sm font-medium text-gray-900">{student.fullName}</div>
-                            <div className="text-xs text-gray-500">{student.studentId}</div>
+                            <div className="text-sm font-medium text-gray-900">
+                              {student.fullName}
+                            </div>
+                            <div className="text-xs text-gray-500">
+                              {student.studentId}
+                            </div>
                           </div>
                         </div>
                       </TableCell>
                       <TableCell>
                         <div className="w-full bg-gray-200 rounded-full h-2 mb-1">
-                          <div 
+                          <div
                             className={`h-2 rounded-full ${
-                              student.progress >= 80 ? "bg-secondary-500" :
-                              student.progress >= 50 ? "bg-primary-500" : "bg-yellow-500"
+                              student.progress >= 80
+                                ? "bg-secondary-500"
+                                : student.progress >= 50
+                                ? "bg-blue-500"
+                                : "bg-yellow-500"
                             }`}
                             style={{ width: `${student.progress}%` }}
                           ></div>
                         </div>
                         <div className="text-xs text-gray-500">
-                          {student.assessmentsCompleted}/{student.totalAssessments} {t('assessments')} {t('completed')}
+                          {student.assessmentsCompleted}/
+                          {student.totalAssessments} {t("assessments")}{" "}
+                          {t("completed")}
                         </div>
                       </TableCell>
                       <TableCell>
-                        <div className="text-sm text-gray-900">{student.careerInterests.join(", ")}</div>
-                        <div className="text-xs text-gray-500">{student.secondaryInterests.join(", ")}</div>
+                        <div className="text-sm text-gray-900">
+                          {student.careerInterests.join(", ")}
+                        </div>
+                        <div className="text-xs text-gray-500">
+                          {student.secondaryInterests.join(", ")}
+                        </div>
                       </TableCell>
                       <TableCell className="text-sm text-gray-500">
                         {formatRelativeTime(student.lastActivity)}
                       </TableCell>
                       <TableCell>
                         <div className="flex space-x-3">
-                          <Button variant="link" className="text-primary-500 hover:text-primary-700 p-0 h-auto">
-                            {t('view_profile')}
+                          <Button
+                            variant="link"
+                            className="text-blue-500 hover:text-blue-700 p-0 h-auto"
+                          >
+                            {t("view_profile")}
                           </Button>
-                          <Button variant="link" className="text-gray-500 hover:text-gray-700 p-0 h-auto">
-                            {t('message')}
+                          <Button
+                            variant="link"
+                            className="text-gray-500 hover:text-gray-700 p-0 h-auto"
+                          >
+                            {t("message")}
                           </Button>
                         </div>
                       </TableCell>
@@ -284,28 +333,36 @@ export default function TeacherDashboard() {
               </TableBody>
             </Table>
           </div>
-          
+
           {filteredStudents.length > 0 && (
             <div className="flex justify-between items-center pt-4 mt-3 border-t">
               <div className="text-sm text-gray-700">
-                {t('showing')} <span className="font-medium">{startIndex + 1}</span> {t('to')} <span className="font-medium">{endIndex}</span> {t('of')} <span className="font-medium">{filteredStudents.length}</span> {t('students')}
+                {t("showing")}{" "}
+                <span className="font-medium">{startIndex + 1}</span> {t("to")}{" "}
+                <span className="font-medium">{endIndex}</span> {t("of")}{" "}
+                <span className="font-medium">{filteredStudents.length}</span>{" "}
+                {t("students")}
               </div>
               <div className="flex space-x-2">
-                <Button 
+                <Button
                   variant="outline"
                   className="text-sm"
                   disabled={currentPage === 1}
-                  onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                  onClick={() =>
+                    setCurrentPage((prev) => Math.max(prev - 1, 1))
+                  }
                 >
-                  {t('previous')}
+                  {t("previous")}
                 </Button>
-                <Button 
+                <Button
                   variant="outline"
                   className="text-sm"
                   disabled={currentPage === totalPages}
-                  onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                  onClick={() =>
+                    setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+                  }
                 >
-                  {t('next')}
+                  {t("next")}
                 </Button>
               </div>
             </div>
@@ -313,7 +370,9 @@ export default function TeacherDashboard() {
 
           {filteredStudents.length === 0 && (
             <div className="text-center py-8">
-              <p className="text-gray-500">No students found matching your search.</p>
+              <p className="text-gray-500">
+                No students found matching your search.
+              </p>
             </div>
           )}
         </CardContent>

@@ -39,12 +39,14 @@ function App() {
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center py-3">
                   <div className="flex items-center space-x-3">
-                    <div className="h-10 w-10 rounded-lg bg-primary-100 flex items-center justify-center">
-                      <span className="font-bold text-primary-500 text-xl">T</span>
+                    <div className="h-10 w-10 rounded-lg bg-blue-100 flex items-center justify-center">
+                      <span className="font-bold text-blue-500 text-xl">T</span>
                     </div>
-                    <h1 className="font-poppins font-bold text-primary-500 text-xl">TawjihAI</h1>
+                    <h1 className="font-poppins font-bold text-blue-500 text-xl">
+                      TawjihAI
+                    </h1>
                   </div>
-                  
+
                   {/* Language Toggle */}
                   <LanguageToggle />
                 </div>
@@ -55,7 +57,7 @@ function App() {
             <main className="flex-grow pt-16 pb-16">
               <Router />
             </main>
-            
+
             {/* Mobile Navigation */}
             <MobileNavigation />
 
