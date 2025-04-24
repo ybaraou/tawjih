@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: mon-app-dev
+    env: node
+    plan: free
+    branch: main
+    buildCommand: npm install
+    startCommand: npm run dev
+    envVars:
+      - key: NODE_ENV
+        value: development
+    # Si monorepo :
+    # rootDir: server   # ou le dossier qui contient ton package.json
