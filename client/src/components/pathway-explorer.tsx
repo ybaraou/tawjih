@@ -39,12 +39,12 @@ export default function PathwayExplorer({
 
       <Card>
         <CardContent className="p-4">
-          <ScrollArea className="w-full overflow-x-auto">
-            <div className="min-w-[800px]">
+          <ScrollArea className="w-full ">
+            <div className=" overflow-x-auto">
               <div className="flex justify-between items-center mb-8">
                 {pathway.steps.map((step, index) => (
                   <>
-                    <div className="flex-1 text-center" key={`step-${index}`}>
+                    <div className="flex-1 text-center " key={`step-${index}`}>
                       <div className="text-xs font-medium text-gray-500 mb-1">
                         {index === 0
                           ? t("starting_point")
@@ -90,7 +90,10 @@ export default function PathwayExplorer({
                     </div>
 
                     {index < pathway.steps.length - 1 && (
-                      <div className="flex-1 px-4" key={`connector-${index}`}>
+                      <div
+                        className="flex-1 hidden sm:block"
+                        key={`connector-${index}`}
+                      >
                         <div
                           className={`h-0.5 w-full relative ${
                             index < currentStepIndex
@@ -104,7 +107,26 @@ export default function PathwayExplorer({
                               index < currentStepIndex
                                 ? "bg-blue-500"
                                 : "bg-gray-300"
-                            }`}
+                            } `}
+                          >
+                            {index + 1}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                    {index < pathway.steps.length - 1 && (
+                      <div
+                        className="flex-1 block sm:hidden"
+                        key={`connector-${index}`}
+                      >
+                        <div className={` relative`}>
+                          <div
+                            className={` w-5 h-5 m-auto rounded-full flex items-center justify-center text-white text-xs
+                            ${
+                              index < currentStepIndex
+                                ? "bg-blue-500"
+                                : "bg-gray-300"
+                            } `}
                           >
                             {index + 1}
                           </div>
@@ -116,11 +138,11 @@ export default function PathwayExplorer({
               </div>
 
               {currentStepIndex >= 0 && (
-                <div className="bg-blue-50 p-4 rounded-lg">
-                  <h4 className="font-poppins font-medium text-md mb-2">
+                <div className="bg-blue-50  p-4 rounded-lg">
+                  <h4 className="font-poppins text-wrap font-medium text-md mb-2">
                     {t("current_step")}: {pathway.steps[currentStepIndex].title}
                   </h4>
-                  <p className="text-sm text-gray-600 mb-3">
+                  <p className="text-sm text-wrap text-gray-600 mb-3">
                     {pathway.steps[currentStepIndex].description}
                   </p>
                   <div className="grid grid-cols-3 gap-4 mb-3">
@@ -133,18 +155,21 @@ export default function PathwayExplorer({
                       </div>
                     </div>
                     <div className="bg-white rounded-lg p-3 text-center">
-                      <div className="text-xs text-gray-500 mb-1">
+                      <div className="text-xs text-wrap text-gray-500 mb-1">
                         {t("key_skills")}
                       </div>
-                      <div className="font-medium">
+                      <div
+                        className="font-medium text-wrap"
+                        style={{ overflowWrap: "break-word" }}
+                      >
                         {pathway.steps[currentStepIndex].keySkills.join(", ")}
                       </div>
                     </div>
                     <div className="bg-white rounded-lg p-3 text-center">
-                      <div className="text-xs text-gray-500 mb-1">
+                      <div className="text-xs text-wrap text-gray-500 mb-1">
                         {t("estimated_cost")}
                       </div>
-                      <div className="font-medium">
+                      <div className="font-medium text-wrap">
                         {pathway.steps[currentStepIndex].estimatedCost}
                       </div>
                     </div>

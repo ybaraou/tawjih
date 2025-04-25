@@ -14,6 +14,7 @@ import WelcomeScreen from "@/components/welcome-screen";
 import AiCounselor from "@/components/ai-counselor";
 import LanguageToggle from "@/components/language-toggle";
 import MobileNavigation from "@/components/mobile-navigation";
+import Logo from "./logo-full.png";
 
 function Router() {
   return (
@@ -35,17 +36,12 @@ function App() {
         <TooltipProvider>
           <div className="min-h-screen flex flex-col">
             {/* Header */}
-            <header className="bg-white shadow-sm fixed top-0 w-full z-10">
+            <header className="bg-white shadow-sm fixed top-0 w-full z-10 mb-3">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-between items-center py-3">
-                  <div className="flex items-center space-x-3">
-                    <div className="h-10 w-10 rounded-lg bg-blue-100 flex items-center justify-center">
-                      <span className="font-bold text-blue-500 text-xl">T</span>
-                    </div>
-                    <h1 className="font-poppins font-bold text-blue-500 text-xl">
-                      TawjihAI
-                    </h1>
-                  </div>
+                <div className="flex justify-between items-center py-0">
+                  <a href="/" className="flex items-center space-x-3">
+                    <img width={100} src={Logo} alt="" />
+                  </a>
 
                   {/* Language Toggle */}
                   <LanguageToggle />

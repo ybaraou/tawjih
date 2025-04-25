@@ -161,7 +161,7 @@ export default function StudentDashboard() {
   );
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 mt-10 lg:px-8 py-6">
       <div className="mb-6">
         <h2 className="font-poppins font-bold text-2xl text-gray-800 mb-2">
           {t("hello")}, {dashboardData.user.fullName}! 👋
