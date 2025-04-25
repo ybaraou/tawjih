@@ -108,7 +108,7 @@ export default function AiCounselor() {
       {/* Floating chat button (now as close button) */}
       <button
         onClick={toggleChatInterface}
-        className="fixed right-6 bottom-20 md:bottom-6 bg-blue-500 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg z-20"
+        className="md:fixed right-6 md:bottom-6 hidden bg-blue-500 text-white rounded-full w-14 h-14 md:flex items-center justify-center shadow-lg z-20"
       >
         <span className="material-icons">close</span>
       </button>
